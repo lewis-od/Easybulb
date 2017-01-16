@@ -2,7 +2,7 @@
 Python API for controlling Easybulb lights. Also works with MiLight and LimitlessLED bulbs.
 
 ## Usage    
-```
+```python
 lights = Easybulb("ip address")
 lights.off() # Turn the lights off
 lights.on() # Turn the lights on

@@ -1,6 +1,7 @@
 import socket
 import struct
 
+# Command codes
 COMMAND_OFF = 0x41
 COMMAND_ON = 0x42
 COMMAND_WHITE = 0xC2
@@ -12,6 +13,10 @@ COMMAND_DISCO_SLOWER = 0x43
 
 class Easybulb:
     def __init__(self, ip_addr, port=8899):
+        """
+        :param ip_addr: The ip address of the Easybub hub
+        :param port: The port to send the UDP packets to
+        """
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.__dest = (ip_addr, port)
         self.__packer = struct.Struct('i')
@@ -22,6 +27,7 @@ class Easybulb:
         cmd_int = int(cmd_string, 16)
         return cmd_int
 
+    # Helper method for sending commands to the Easybulb hub via UDP
     def __send_cmd(self, cmd_int):
         cmd_bytes = self.__packer.pack(cmd_int)
         self.__sock.sendto(cmd_bytes, self.__dest)

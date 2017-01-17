@@ -60,7 +60,7 @@ class Easybulb:
         :param i: A value between 0 and 59
         """
         if i < 1 or i > 59:
-            raise Exception("Brightness must be between 1 and 59")
+            raise Exception("Brightness must be between 1 and 59. Got {}".format(i))
         cmd_int = self.__concat_bytes(i, COMMAND_BRIGHTNESS)
         self.__send_cmd(cmd_int)
 

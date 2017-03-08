@@ -2,9 +2,16 @@ from flask import Flask
 from easybulb import Easybulb
 import flask
 import math
+import socket
+import sys
+
+if len(sys.argv) != 2:
+    raise Exception("Please provide the IP address of your Easybulb hub")
+ip_addr = sys.argv[1] # IP address validation handled by Easybulb class
 
 app = Flask(__name__)
-lights = Easybulb("192.168.0.21")
+lights = Easybulb(ip_addr)
+print("Easybulb initialised with ip: {}".format(ip_addr))
 
 @app.route('/on')
 def on():

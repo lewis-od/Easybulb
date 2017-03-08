@@ -17,6 +17,24 @@ class Easybulb:
         :param ip_addr: The ip address of the Easybub hub
         :param port: The port to send the UDP packets to
         """
+        # Check the IP address provided is valid
+        # From http://stackoverflow.com/questions/319279/how-to-validate-ip-address-in-python
+        addr_isvalid = True
+        try:
+            socket.inet_pton(socket.AF_INET, ip_addr)
+        except AttributeError:
+            try:
+                socket.inet_aton(ip_addre)
+            except socket.error:
+                addr_isvalid = False
+            addr_isvalid = (ip_addr.count('.') == 3)
+        except socket.error:
+            addr_isvalid = False
+
+        if not addr_isvalid:
+            raise Exception("IP address '{}'' is not valid".format(ip_addr))
+
+        # Create objects required for socket communication
         self.__sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.__dest = (ip_addr, port)
         self.__packer = struct.Struct('i')

@@ -4,7 +4,7 @@ import flask
 import math
 
 app = Flask(__name__)
-lights = Easybulb("192.168.0.13")
+lights = Easybulb("192.168.0.21")
 
 @app.route('/on')
 def on():

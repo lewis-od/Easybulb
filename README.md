@@ -13,3 +13,6 @@ lights.disco() # Activate disco mode
 lights.disco_faster() # Speed up disco mode
 lights.disco_slower() # Slow down disco mode
 ```
+
+# TODO    
+Make pass in easybulb hub IP to server via command line argument.
